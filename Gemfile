@@ -46,3 +46,9 @@ gem 'pg'
 #Ancestry
 gem 'ancestry'
 
+gem 'jwt'
+
+gem 'fast_jsonapi'
+
+
+
