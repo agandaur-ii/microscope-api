@@ -13,6 +13,16 @@ class Api::V1::BoardsController < ApplicationController
         render json: BodySerializer.new(body)
     end
 
+    def destroy
+        board = Board.find(params[:id])
+        if board 
+            board.destroy
+            render json: {message: "Board deleted"}
+        else
+            render json: {message: "Board could not be located"}
+        end
+    end
+
     private
 
     def board_params

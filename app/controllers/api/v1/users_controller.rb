@@ -10,14 +10,19 @@ class Api::V1::UsersController < ApplicationController
         end
     end
 
-    def delete
-        user = User.find_by(id: user_params(:id))
-        User.delete(user)
+    def destroy
+        user = User.find(params[:id])
+        if user 
+            user.destroy
+            render json: {message: "User deleted"}
+        else
+            render json: {message: "User's account could not be located"}
+        end
     end
 
     def update
-        user = User.find_by(id: user_params(:id))
-        User.update(user_params)
+        user = User.find(params[:id])
+        user.update(user_params)
         if user.valid? 
             render json: UserSerializer.new(user)
         else

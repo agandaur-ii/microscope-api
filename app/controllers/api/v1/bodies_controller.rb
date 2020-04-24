@@ -13,6 +13,16 @@ class Api::V1::BodiesController < ApplicationController
         render json: BodySerializer.new(body)
     end
 
+    def destroy
+        body = Body.find(params[:id])
+        if body 
+            body.destroy
+            render json: {message: "Body deleted"}
+        else
+            render json: {message: "Body could not be located"}
+        end
+    end
+
     private
 
     def body_params

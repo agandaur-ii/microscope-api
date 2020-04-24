@@ -13,6 +13,16 @@ class Api::V1::IconsController < ApplicationController
         render json: BodySerializer.new(body)
     end
 
+    def destroy
+        icon = Icon.find(params[:id])
+        if icon 
+            icon.destroy
+            render json: {message: "Icon deleted"}
+        else
+            render json: {message: "Icon could not be located"}
+        end
+    end
+
     private
 
     def icon_params
