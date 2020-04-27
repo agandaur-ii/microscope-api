@@ -1,4 +1,10 @@
 class Api::V1::BoardsController < ApplicationController
+    skip_before_action :authorized, only: [:index]
+    def index
+        boards = Board.all
+        render json: BoardSerializer.new(boards)
+    end
+    
     def create
         board = Board.create(board_params)
         #logic for ancestry, if present

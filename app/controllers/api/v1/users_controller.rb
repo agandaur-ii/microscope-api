@@ -6,7 +6,7 @@ class Api::V1::UsersController < ApplicationController
         if user.valid?
             render json: { user: UserSerializer.new(user), jwt: @token}, status: :created
         else
-            render json: {error: 'failed to create new user'}, status: :not_acceptable
+            render json: {message: user.errors.full_messages, status: :unprocessable_entity}
         end
     end
 
@@ -32,6 +32,6 @@ class Api::V1::UsersController < ApplicationController
 
     private
         def user_params
-            params.require(:user).permit(:first_name, :last_name, :username, :password, :id)
+            params.require(:user).permit(:first_name, :last_name, :username, :password)
         end
 end

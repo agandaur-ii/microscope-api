@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_212110) do
     t.bigint "icon_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["icon_id"], name: "index_bodies_on_icon_id"
+    t.index ["icon_id"], name: "index_bodies_on_icon_id" 
   end
 
   create_table "icons", force: :cascade do |t|

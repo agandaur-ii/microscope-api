@@ -1,5 +1,5 @@
 class BoardSerializer
   include FastJsonapi::ObjectSerializer
-  attributes
+  attributes :title, :background_img
   has_many :icons
 end
