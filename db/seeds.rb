@@ -13,13 +13,13 @@ background_img: "https://i.pinimg.com/originals/f0/e1/86/f0e1869820b56bcc79819de
 user_id: chris.id)
 
 denmark = Icon.create(title: "Denmark", board_id: world.id)
-dbody = Body.create(description: "Happiest country in the world", type: "board", content: "img_url", icon_id: denmark.id)
+dbody = Body.create(description: "Happiest country in the world", body_type: "board", content: "img_url", icon_id: denmark.id)
 
 armenia = Icon.create(title: "Armenia", board_id: world.id)
-abody = Body.create((description: "Views of Mt. Ararat!", type: "board", content: "img_url", icon_id: armenia.id))
+abody = Body.create(description: "Views of Mt. Ararat!", body_type: "board", content: "img_url", icon_id: armenia.id)
 
 denmarkBoard = Board.create(title: "Denmark", 
-background_img: "test",
+background_img: "https://www.enchantedlearning.com/europe/denmark/outlinemap/map.GIF",
 user_id: chris.id, 
 parent: world
 ) 
