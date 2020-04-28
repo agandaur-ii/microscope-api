@@ -1,5 +1,5 @@
 class IconSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :title, :bodies
   has_many :bodies
 end
