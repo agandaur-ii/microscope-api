@@ -1,5 +1,5 @@
 class Icon < ApplicationRecord
   belongs_to :board
-  has_many :bodies
+  has_many :bodies, dependent: :destroy
 
 end

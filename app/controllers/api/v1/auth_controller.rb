@@ -12,9 +12,9 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def show
-        user = User.find_by(id: user_id)
+        user = User.find_by(id: current_user.id)
         if logged_in?
-            render json: { id: user.id, username: user.username }
+            render json: { id: user.id, username: user.username, firstname: user.first_name }
         else
             render json: {error: 'No user could be found'}, status: 401
         end
