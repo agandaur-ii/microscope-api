@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
         user = User.find(params[:id])
         if user 
             user.destroy
-            render json: {message: "User deleted"}
+            render json: {info: "User deleted"}
         else
             render json: {message: "User's account could not be located"}
         end
@@ -32,6 +32,6 @@ class Api::V1::UsersController < ApplicationController
 
     private
         def user_params
-            params.require(:user).permit(:first_name, :last_name, :username, :password)
+            params.require(:user).permit(:first_name, :last_name, :username, :password, :id)
         end
 end

@@ -1,5 +1,5 @@
 class Api::V1::BoardsController < ApplicationController
-    skip_before_action :authorized, only: [:index, :destroy]
+    skip_before_action :authorized, only: [:index]
     def index
         boards = Board.all
         render json: BoardSerializer.new(boards)
