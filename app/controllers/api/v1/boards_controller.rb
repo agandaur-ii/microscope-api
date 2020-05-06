@@ -13,7 +13,7 @@ class Api::V1::BoardsController < ApplicationController
     end
 
     def show 
-        board =Board.find(params[:id])
+        board = Board.find(params[:id])
         render json: BoardSerializer.new(board)
     end
 
@@ -39,7 +39,8 @@ class Api::V1::BoardsController < ApplicationController
         board = Board.find(params[:id])
         if board 
             board.destroy
-            render json: {info: "Board deleted"}
+            boards = Board.all
+            render json: BoardSerializer.new(boards)
         else
             render json: {message: "Board could not be located"}
         end
