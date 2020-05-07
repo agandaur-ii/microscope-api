@@ -3,4 +3,4 @@ class Board < ApplicationRecord
   has_many :icons, dependent: :destroy
 
   has_ancestry
-end
+end 
