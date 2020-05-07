@@ -1,4 +1,4 @@
 class BodySerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
-end
+  attributes :id, :description, :body_type, :content
+end 

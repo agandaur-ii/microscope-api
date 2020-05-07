@@ -1,9 +1,25 @@
 class Api::V1::IconsController < ApplicationController
-    def create
-        icon = Icon.create(icon_params)
-        #logic for ancestry, if present
+    skip_before_action :authorized, only: [:index]
+    def index
+        icons = Icon.all
+        render json: IconSerializer.new(icons)
+    end
 
-        render json: IconSerializer.new(icon)
+    def create
+        icon = Icon.new(icon_params)
+        #logic for ancestry, if present
+        if icon.title == "" || params[:description] == "" || params[:content] == ""
+            render json: {error: 'Form must be filled out completely'}, status: :incomplete
+        else
+            icon.save
+            body = Body.create(
+                description: params[:description],
+                body_type: params[:type],
+                content: params[:content],
+                icon_id: icon.id
+            )
+            render json: IconSerializer.new(icon)
+        end
     end
 
     def update 
@@ -14,18 +30,29 @@ class Api::V1::IconsController < ApplicationController
     end
 
     def destroy
-        icon = Icon.find(params[:id])
+        icon = Icon.find(params[:id].to_i)
         if icon 
             icon.destroy
-            render json: {message: "Icon deleted"}
+            icons = Icon.all
+            render json: IconSerializer.new(icons)
         else
             render json: {message: "Icon could not be located"}
         end
     end
 
+    def icons_for_board
+        icons = Icon.all.select{|icon| icon.board_id == params[:id].to_i}
+        if icons == nil || icons == []
+            render json: {message: "Icons could not be located"}
+        else
+            render json: IconSerializer.new(icons)
+        end
+        
+    end
+
     private
 
     def icon_params
-        params.require(:icon).permit(:board_id, :title)
+        params.require(:icon).permit(:board_id, :title, :id, :description, :type, :content)
     end
 end
