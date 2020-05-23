@@ -8,7 +8,6 @@ class Api::V1::BoardsController < ApplicationController
     def create
         board = Board.create(board_params)
         #logic for ancestry, if present
-
         render json: BoardSerializer.new(board)
     end
 
