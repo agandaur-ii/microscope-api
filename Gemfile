@@ -50,5 +50,7 @@ gem 'jwt'
 
 gem 'fast_jsonapi'
 
+gem 'cloudinary'
+
 
 

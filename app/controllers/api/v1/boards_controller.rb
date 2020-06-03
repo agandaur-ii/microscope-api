@@ -6,10 +6,11 @@ class Api::V1::BoardsController < ApplicationController
     end
     
     def create
-        
-        board = Board.create(board_params)
+        @board = Board.create(board_params)
         #logic for ancestry, if present
-        render json: BoardSerializer.new(board)
+        Cloudinary::Uploader.upload(board_params[:image])
+        board_serializer = BoardImageSerializer.new(board: @board)
+        render json: board_serializer.serialize_new_board()
     end
 
     def show 
@@ -49,6 +50,6 @@ class Api::V1::BoardsController < ApplicationController
     private
 
     def board_params
-        params.require(:board).permit(:user_id, :title, :background_img, :id)
+        params.require(:board).permit(:user_id, :title, :background_img, :id, :image)
     end
 end
