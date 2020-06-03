@@ -6,11 +6,8 @@ class Api::V1::BoardsController < ApplicationController
     end
     
     def create
-        @board = Board.create(board_params)
-        #logic for ancestry, if present
-        Cloudinary::Uploader.upload(board_params[:image])
-        board_serializer = BoardImageSerializer.new(board: @board)
-        render json: board_serializer.serialize_new_board()
+        board = Board.create(board_params)
+        render json: BoardSerializer.new(board)
     end
 
     def show 
