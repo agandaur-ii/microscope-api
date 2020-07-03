@@ -2,7 +2,8 @@ class Api::V1::IconsController < ApplicationController
     skip_before_action :authorized, only: [:index]
     def index
         icons = Icon.all
-        render json: IconSerializer.new(icons)
+        options = { include: [:bodies]}
+        render json: IconSerializer.new(icons, options)
     end
 
     def create
@@ -15,7 +16,10 @@ class Api::V1::IconsController < ApplicationController
             body = Body.new(body_params)
             body.icon_id = icon.id
             body.save
-            render json: IconSerializer.new(icon)
+
+            #options = {include: [:bodies]}
+            options[:include] = [:bodies, :'bodies.custom_url']
+            render json: IconSerializer.new(icon, options).serialized_json
         end
     end
 

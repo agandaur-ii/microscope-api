@@ -1,4 +1,12 @@
 class Api::V1::BodiesController < ApplicationController
+    skip_before_action :authorized, only: [:index]
+    def index
+        bodies = Body.all
+        render json: BodySerializer.new(bodies)
+    end
+
+
+    #remove above when ready^^
     def create
         body = Body.create(body_params)
         #logic for ancestry, if present
