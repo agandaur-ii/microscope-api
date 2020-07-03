@@ -12,12 +12,9 @@ class Api::V1::IconsController < ApplicationController
             render json: {error: 'Form must be filled out completely'}, status: :incomplete
         else
             icon.save
-            body = Body.create(
-                description: params[:description],
-                body_type: params[:type],
-                content: params[:content],
-                icon_id: icon.id
-            )
+            body = Body.new(body_params)
+            body.icon_id = icon.id
+            body.save
             render json: IconSerializer.new(icon)
         end
     end
@@ -53,6 +50,10 @@ class Api::V1::IconsController < ApplicationController
     private
 
     def icon_params
-        params.require(:icon).permit(:board_id, :title, :id, :description, :type, :content)
+        params.require(:icon).permit(:board_id, :title, :id)
+    end
+
+    def body_params
+        params.require(:body).permit(:icon_id, :description, :body_type, :image, :id)
     end
 end
