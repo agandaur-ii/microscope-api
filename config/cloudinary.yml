@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dxiequkyq
+  api_key: '469236993297541'
+  api_secret: fIKWGXlWMnqzgKfOAqw4lREMR1E
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dxiequkyq
+  api_key: '469236993297541'
+  api_secret: fIKWGXlWMnqzgKfOAqw4lREMR1E
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dxiequkyq
+  api_key: '469236993297541'
+  api_secret: fIKWGXlWMnqzgKfOAqw4lREMR1E
+  enhance_image_tag: true
+  static_file_support: false
