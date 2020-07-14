@@ -31,5 +31,5 @@
 
 app/controllers/application_controller.rb
 
-/conif/cloudinary.yml.env
+/config/cloudinary.yml.env
 .env

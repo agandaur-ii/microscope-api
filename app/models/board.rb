@@ -10,6 +10,6 @@ class Board < ApplicationRecord
   def get_image_url    
     url_for(self.image)  
   end
-end 
+end
  
 
