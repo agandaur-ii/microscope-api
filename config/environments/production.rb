@@ -86,7 +86,7 @@ Rails.application.configure do
 
   #change when deployed
   #Rails.application.routes.default_url_options = { host: "http://localhost:3000" }
-  Rails.application.routes.default_url_options = { host: "https://lit-castle-24379.herokuapp.com/api/v1" }
+  Rails.application.routes.default_url_options = { host: "https://lit-castle-24379.herokuapp.com" }
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
