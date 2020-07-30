@@ -82,11 +82,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # config.active_storage.service = :local
   config.active_storage.service = :cloudinary
-
-  #change when deployed
-  #Rails.application.routes.default_url_options = { host: "http://localhost:3000" }
-  Rails.application.routes.default_url_options = { host: "https://lit-castle-24379.herokuapp.com" }
+  
+  Rails.application.routes.default_url_options = { host: "http://localhost:3000" }
+  #Rails.application.routes.default_url_options = { host: "https://lit-castle-24379.herokuapp.com" }
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
